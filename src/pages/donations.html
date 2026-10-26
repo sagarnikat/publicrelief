@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse the latest donation records in the Public Relief demonstration ledger." />
+    <title>Donation ledger — Public Relief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/donations.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="../../index.html" class="brand" aria-label="Public Relief home"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a>
+        <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="./projects.html">Our focus</a></li><li><a href="./donations.html" aria-current="page">Donation ledger</a></li><li><a href="./about.html">About</a></li><li><a href="./yourdonation.html">Find a donation</a></li><li><a class="button button-small" href="./donation.html">Make a donation <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="page-hero page-wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> The public record</p>
+        <h1>Every entry has<br /><em>a place in the chain.</em></h1>
+        <p class="page-lead">Explore the donation records stored by this local prototype. Select an entry to search using its donation ID or block hash.</p>
+      </section>
+      <section class="ledger-section page-wrap">
+        <div class="ledger-toolbar"><div><h2>Recent contributions</h2><p>Records are shown newest first.</p></div><a class="button button-dark" href="./donation.html">Add a record <span aria-hidden="true">↗</span></a></div>
+        <div id="donations-list" class="donation-grid" aria-live="polite"><p class="loading-message">Loading the donation ledger…</p></div>
+      </section>
+      <p class="prototype-note page-wrap">Prototype only: these records are not payment receipts or proof of funds transferred to a charity.</p>
+    </main>
+    <footer class="site-footer"><div class="page-wrap footer-inner"><a href="../../index.html" class="brand brand-footer"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a><p>A transparency-focused charity prototype. No payments are processed and no funds are distributed.</p><span class="footer-credit">Made with care · © Public Relief</span></div></footer>
+  </body>
+</html>

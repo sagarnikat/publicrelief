@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create a sample donation record in the Public Relief local prototype." />
+    <title>Make a donation — Public Relief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/donation-form.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="../../index.html" class="brand" aria-label="Public Relief home"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a>
+        <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="./projects.html">Our focus</a></li><li><a href="./donations.html">Donation ledger</a></li><li><a href="./about.html">About</a></li><li><a href="./yourdonation.html">Find a donation</a></li><li><a class="button button-small" href="./donation.html" aria-current="page">Make a donation <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="page-hero page-wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Add a sample record</p>
+        <h1>Make your mark<br /><em>on the ledger.</em></h1>
+        <p class="page-lead">Create a demonstration entry for a focus area. This form records a pledge only—it does not collect payment or send money.</p>
+      </section>
+      <section class="donation-layout page-wrap">
+        <aside class="donation-aside">
+          <span class="aside-icon" aria-hidden="true">✳</span>
+          <h2>A note before you begin.</h2>
+          <p>This is a local prototype. Donation details, including your name and email, are stored in plain text and visible through the demo API.</p>
+          <p><strong>Please use fictional details only.</strong> Do not enter real personal or payment information.</p>
+          <a class="text-link" href="./about.html">How this prototype works <span aria-hidden="true">→</span></a>
+        </aside>
+        <div class="donation-form-card">
+          <form id="donation-form" class="donation-form">
+            <div class="form-heading"><p class="eyebrow">Your sample contribution</p><h2>Donation details</h2></div>
+            <div class="form-row">
+              <div class="form-group"><label for="donor">Display name</label><input type="text" id="donor" name="donor" autocomplete="off" placeholder="e.g. Alex Morgan" maxlength="80" required /></div>
+              <div class="form-group"><label for="email">Email <span class="label-note">demo data only</span></label><input type="email" id="email" name="email" autocomplete="off" placeholder="alex@example.test" maxlength="120" required /></div>
+            </div>
+            <div class="form-row form-row-amount">
+              <div class="form-group"><label for="amount">Amount</label><input type="number" id="amount" name="amount" min="1" step="1" placeholder="25" required /></div>
+              <div class="form-group"><label for="currency">Currency</label><select id="currency" name="currency" required><option value="SEK">SEK</option><option value="USD">USD</option><option value="EUR">EUR</option></select></div>
+            </div>
+            <div class="form-group"><label for="project">Choose a focus</label><select id="project" name="project" required><option value="Sudan war">Relief for Sudan</option><option value="Ukraine">Support for Ukraine</option><option value="Palestine">Relief for Palestine</option></select></div>
+            <div class="form-group"><label for="message">A message <span class="label-note">optional</span></label><textarea id="message" name="message" rows="3" maxlength="240" placeholder="Leave a short note…"></textarea></div>
+            <button type="submit" class="button button-dark form-submit">Add sample record <span aria-hidden="true">↗</span></button>
+            <p class="form-disclaimer">No payment will be taken. This action adds a record to the local demo ledger.</p>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="page-wrap footer-inner"><a href="../../index.html" class="brand brand-footer"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a><p>A transparency-focused charity prototype. No payments are processed and no funds are distributed.</p><span class="footer-credit">Made with care · © Public Relief</span></div></footer>
+  </body>
+</html>

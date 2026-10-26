@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn about Public Relief, a prototype exploring transparency in charitable giving." />
+    <title>About — Public Relief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <script src="../js/navbar.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="../../index.html" class="brand" aria-label="Public Relief home"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a>
+        <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="./projects.html">Our focus</a></li><li><a href="./donations.html">Donation ledger</a></li><li><a href="./about.html" aria-current="page">About</a></li><li><a href="./yourdonation.html">Find a donation</a></li><li><a class="button button-small" href="./donation.html">Make a donation <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="page-hero page-wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> The thought behind it</p>
+        <h1>Giving deserves<br /><em>to be seen.</em></h1>
+        <p class="page-lead">Public Relief is a charity website prototype built around one simple idea: make donation records easier for everyone to explore.</p>
+      </section>
+      <section class="about-feature page-wrap">
+        <img src="../images/publicrelief2.jpg" alt="People working together in their community" />
+        <div class="about-feature-copy"><p class="eyebrow">Our point of view</p><h2>Trust starts with openness.</h2><p>Donating is an act of hope. This project explores how a public, hash-linked record can show when a donation was added and how its record connects to the one before it.</p><p>It is a learning project, not an operating charity. The ledger is a local demonstration, and the site does not collect or transfer real money.</p></div>
+      </section>
+      <section class="process-section">
+        <div class="page-wrap">
+          <div class="section-heading"><div><p class="eyebrow">How the demo works</p><h2>A simple trail to follow.</h2></div></div>
+          <div class="process-grid">
+            <article class="process-card"><span class="process-number">01</span><h3>Choose a focus</h3><p>Explore the sample relief projects and choose where your demonstration donation record should be tagged.</p></article>
+            <article class="process-card"><span class="process-number">02</span><h3>Add a record</h3><p>The form sends your details to a local API, which stores a new record in a JSON file.</p></article>
+            <article class="process-card"><span class="process-number">03</span><h3>Follow the ledger</h3><p>Browse the records and their hashes. Each entry links to the previous record in this prototype chain.</p></article>
+          </div>
+          <p class="prototype-note">This demo does not verify charitable partners, publish impact reports, process payments, or distribute donations.</p>
+        </div>
+      </section>
+      <section class="closing-cta page-wrap"><div><p class="eyebrow">Take a look for yourself</p><h2>Explore the donation ledger.</h2></div><a class="button button-dark" href="./donations.html">View the ledger <span aria-hidden="true">→</span></a></section>
+    </main>
+    <footer class="site-footer"><div class="page-wrap footer-inner"><a href="../../index.html" class="brand brand-footer"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a><p>A transparency-focused charity prototype. No payments are processed and no funds are distributed.</p><span class="footer-credit">Made with care · © Public Relief</span></div></footer>
+  </body>
+</html>

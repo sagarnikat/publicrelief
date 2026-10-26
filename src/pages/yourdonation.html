@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Find a donation record in the Public Relief demo ledger by donation ID or block hash." />
+    <title>Find a donation — Public Relief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/app.css" />
+    <script src="../js/navbar.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="../../index.html" class="brand" aria-label="Public Relief home"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a>
+        <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="./projects.html">Our focus</a></li><li><a href="./donations.html">Donation ledger</a></li><li><a href="./about.html">About</a></li><li><a href="./yourdonation.html" aria-current="page">Find a donation</a></li><li><a class="button button-small" href="./donation.html">Make a donation <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="page-hero page-wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Find a record</p>
+        <h1>Look a little<br /><em>closer.</em></h1>
+        <p class="page-lead">Search the demo ledger with the donation ID you received or the block hash shown on a record.</p>
+      </section>
+      <section class="search-section page-wrap">
+        <form id="search-form" class="search-form">
+          <label for="search-input">Donation ID or block hash</label>
+          <div class="search-control"><input type="search" id="search-input" name="query" placeholder="Paste an ID or hash" autocomplete="off" required /><button type="submit" class="button button-dark">Search <span aria-hidden="true">→</span></button></div>
+          <p class="field-hint">Your search is checked against records in the local demo ledger.</p>
+        </form>
+        <div id="search-results" aria-live="polite"></div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="page-wrap footer-inner"><a href="../../index.html" class="brand brand-footer"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a><p>A transparency-focused charity prototype. No payments are processed and no funds are distributed.</p><span class="footer-credit">Made with care · © Public Relief</span></div></footer>
+    <script src="../js/search-donation.js" defer></script>
+  </body>
+</html>
