@@ -3,6 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('search-input');
     const results = document.getElementById('search-results');
 
+    const formatDonationAmount = donation => {
+        const amount = Number(donation.amount);
+        if (!Number.isFinite(amount)) return 'Amount unavailable';
+        if (donation.currency === 'INR' || donation.currency === 'USD') {
+            return new Intl.NumberFormat(donation.currency === 'INR' ? 'en-IN' : 'en-US', {
+                style: 'currency',
+                currency: donation.currency,
+                minimumFractionDigits: donation.currency === 'INR' ? 0 : 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+        return `${amount} ${donation.currency || ''}`.trim();
+    };
+
     const addDetail = (container, label, value, className = '') => {
         const row = document.createElement('div');
         row.className = 'record-detail';
@@ -68,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addDetail(details, 'Previous block', block.lastHash, 'record-value-mono');
             addDetail(details, 'Added', date);
             addDetail(details, 'Donor', donation.donor || 'Anonymous');
-            addDetail(details, 'Amount', `${donation.amount ?? '—'} ${donation.currency || ''}`.trim());
+            addDetail(details, 'Amount', formatDonationAmount(donation));
             if (donation.message) addDetail(details, 'Message', donation.message);
 
             const note = document.createElement('p');

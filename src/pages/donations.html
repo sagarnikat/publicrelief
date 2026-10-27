@@ -26,13 +26,13 @@
       <section class="page-hero page-wrap">
         <p class="eyebrow"><span class="eyebrow-dot"></span> The public record</p>
         <h1>Every entry has<br /><em>a place in the chain.</em></h1>
-        <p class="page-lead">Explore the donation records stored by this local prototype. Select an entry to search using its donation ID or block hash.</p>
+        <p class="page-lead">Follow each sample transaction inside its own hash-linked block. These records are stored in the local prototype ledger, not on a public blockchain.</p>
       </section>
       <section class="ledger-section page-wrap">
-        <div class="ledger-toolbar"><div><h2>Recent contributions</h2><p>Records are shown newest first.</p></div><a class="button button-dark" href="./donation.html">Add a record <span aria-hidden="true">↗</span></a></div>
-        <div id="donations-list" class="donation-grid" aria-live="polite"><p class="loading-message">Loading the donation ledger…</p></div>
+        <div class="ledger-toolbar"><div><h2>Donation blockchain</h2><p id="ledger-summary">Each block contains one sample transaction.</p></div><a class="button button-dark" href="./donation.html">Add a record <span aria-hidden="true">↗</span></a></div>
+        <div id="donations-list" class="donation-chain" aria-live="polite"><p class="loading-message">Loading the donation ledger…</p></div>
       </section>
-      <p class="prototype-note page-wrap">Prototype only: these records are not payment receipts or proof of funds transferred to a charity.</p>
+      <p class="prototype-note page-wrap">Prototype only: each block is stored in a local JSON file and linked by its hash. This is not a public, distributed blockchain, a payment receipt, or proof of funds transferred.</p>
     </main>
     <footer class="site-footer"><div class="page-wrap footer-inner"><a href="../../index.html" class="brand brand-footer"><img src="../images/publiclogo.jpg" alt="" class="logo-image" /><span>public<span class="brand-accent">relief</span></span></a><p>A transparency-focused charity prototype. No payments are processed and no funds are distributed.</p><span class="footer-credit">Made with care · © Public Relief</span></div></footer>
   </body>

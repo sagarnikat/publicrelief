@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             status.className = 'form-status form-status-success';
             status.textContent = `Sample record added. Your donation ID is ${donation.id}.`;
             form.reset();
-            project.value = 'Sudan war';
+            project.value = 'Assam Flood Relief';
         } catch (error) {
             status.className = 'form-status form-status-error';
             status.textContent = `${error.message} Make sure the API server is running on port 3010.`;

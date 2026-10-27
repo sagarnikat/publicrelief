@@ -8,6 +8,23 @@ function parseDonationData(block) {
     }
 }
 
+function formatDonationAmount(donation) {
+    const amount = Number(donation.amount);
+    if (!Number.isFinite(amount)) return 'Amount unavailable';
+
+    if (donation.currency === 'INR' || donation.currency === 'USD') {
+        const locale = donation.currency === 'INR' ? 'en-IN' : 'en-US';
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: donation.currency,
+            minimumFractionDigits: donation.currency === 'INR' ? 0 : 2,
+            maximumFractionDigits: 2
+        }).format(amount);
+    }
+
+    return `${amount} ${donation.currency || ''}`.trim();
+}
+
 function createDonationCard(block) {
     const donation = parseDonationData(block);
     if (!donation || !donation.id) return null;
@@ -31,7 +48,7 @@ function createDonationCard(block) {
 
     const amount = document.createElement('p');
     amount.className = 'donation-amount';
-    amount.textContent = `${donation.amount ?? '—'} ${donation.currency || ''}`.trim();
+    amount.textContent = formatDonationAmount(donation);
 
     const donor = document.createElement('p');
     donor.className = 'donation-donor';
@@ -50,6 +67,73 @@ function createDonationCard(block) {
     return card;
 }
 
+function createBlockCard(block, blockNumber) {
+    const donation = parseDonationData(block);
+    if (!donation || !donation.id) return null;
+
+    const card = document.createElement('article');
+    card.className = 'chain-block';
+
+    const header = document.createElement('header');
+    header.className = 'chain-block-header';
+    const blockLabel = document.createElement('span');
+    blockLabel.className = 'chain-block-number';
+    blockLabel.textContent = `BLOCK ${String(blockNumber).padStart(3, '0')}`;
+    const timestamp = Number(block.timestamp);
+    const date = document.createElement('time');
+    date.className = 'donation-date';
+    date.dateTime = Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : '';
+    date.textContent = Number.isFinite(timestamp)
+        ? new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium', timeStyle: 'short' }).format(timestamp)
+        : 'Date unavailable';
+    header.append(blockLabel, date);
+
+    const transaction = document.createElement('div');
+    transaction.className = 'chain-transaction';
+    const transactionLabel = document.createElement('p');
+    transactionLabel.className = 'chain-transaction-label';
+    transactionLabel.textContent = `TRANSACTION · ${donation.id}`;
+    const project = document.createElement('h3');
+    project.className = 'chain-project';
+    project.textContent = donation.project || 'Community relief';
+    const amount = document.createElement('p');
+    amount.className = 'chain-amount';
+    amount.textContent = formatDonationAmount(donation);
+    const donor = document.createElement('p');
+    donor.className = 'chain-donor';
+    donor.textContent = `Contributed by ${donation.donor || 'Anonymous'}`;
+    const recordLink = document.createElement('a');
+    recordLink.className = 'text-link';
+    recordLink.href = `./yourdonation.html?query=${encodeURIComponent(donation.id)}`;
+    recordLink.textContent = 'View transaction details →';
+    transaction.append(transactionLabel, project, amount, donor, recordLink);
+
+    const metadata = document.createElement('dl');
+    metadata.className = 'chain-metadata';
+    const addHash = (label, value, isCurrentHash = false) => {
+        const row = document.createElement('div');
+        row.className = 'chain-metadata-row';
+        const heading = document.createElement('dt');
+        heading.textContent = label;
+        const detail = document.createElement('dd');
+        if (isCurrentHash && value) {
+            const link = document.createElement('a');
+            link.href = `./yourdonation.html?query=${encodeURIComponent(value)}`;
+            link.textContent = value;
+            detail.append(link);
+        } else {
+            detail.textContent = value || 'Unavailable';
+        }
+        row.append(heading, detail);
+        metadata.append(row);
+    };
+    addHash('Previous block hash', block.lastHash);
+    addHash('Block hash', block.hash, true);
+
+    card.append(header, transaction, metadata);
+    return card;
+}
+
 async function loadDonations(container, limit) {
     try {
         const response = await fetch(API_URL);
@@ -58,23 +142,34 @@ async function loadDonations(container, limit) {
         const blocks = await response.json();
         if (!Array.isArray(blocks)) throw new Error('The donation service returned an unexpected response.');
 
+        const isChainView = container.id === 'donations-list';
         const records = blocks
-            .map(block => ({ block, donation: parseDonationData(block) }))
-            .filter(item => item.donation?.id)
-            .sort((a, b) => Number(b.block.timestamp) - Number(a.block.timestamp))
-            .slice(0, limit);
+            .map((block, index) => ({ block, index, donation: parseDonationData(block) }))
+            .filter(item => item.donation?.id);
 
         container.replaceChildren();
         if (records.length === 0) {
             const empty = document.createElement('p');
             empty.className = 'empty-state';
-            empty.textContent = 'No donation records yet. New sample entries will appear here.';
+            empty.textContent = 'No sample transactions yet. New entries will appear here.';
             container.append(empty);
             return;
         }
 
-        records.forEach(({ block }) => {
-            const card = createDonationCard(block);
+        if (isChainView) {
+            const summary = document.getElementById('ledger-summary');
+            if (summary) {
+                summary.textContent = `${records.length} sample block${records.length === 1 ? '' : 's'} · ${records.length} transaction${records.length === 1 ? '' : 's'}`;
+            }
+        } else {
+            records.sort((a, b) => Number(b.block.timestamp) - Number(a.block.timestamp));
+            records.splice(limit);
+        }
+
+        records.forEach(({ block, index }) => {
+            const card = isChainView
+                ? createBlockCard(block, index)
+                : createDonationCard(block);
             if (card) container.append(card);
         });
     } catch (error) {

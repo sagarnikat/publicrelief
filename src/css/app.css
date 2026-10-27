@@ -537,6 +537,106 @@ p {
   gap: 18px;
 }
 
+.donation-chain {
+  display: grid;
+  gap: 18px;
+}
+
+.chain-block {
+  min-width: 0;
+  padding: 22px 26px;
+  border: 1px solid #dfe5da;
+  border-left: 4px solid var(--green);
+  background: var(--white);
+}
+
+.chain-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chain-block-number,
+.chain-transaction-label {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.chain-transaction {
+  padding-block: 20px;
+}
+
+.chain-transaction-label {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  overflow-wrap: anywhere;
+}
+
+.chain-project {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.chain-amount {
+  margin: 8px 0 0;
+  color: var(--green-dark);
+  font-family: var(--display);
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.25;
+}
+
+.chain-donor {
+  margin: 4px 0 13px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chain-metadata {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+
+.chain-metadata-row {
+  display: grid;
+  grid-template-columns: minmax(125px, 0.3fr) minmax(0, 1fr);
+  gap: 16px;
+  font-size: 10px;
+}
+
+.chain-metadata-row dt {
+  color: var(--muted);
+}
+
+.chain-metadata-row dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.chain-metadata-row a {
+  color: var(--green);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
 .donation-card {
   min-width: 0;
   padding: 22px;
@@ -1305,6 +1405,15 @@ p {
   .record-detail {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .chain-block {
+    padding: 18px;
+  }
+
+  .chain-metadata-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .donation-layout {
